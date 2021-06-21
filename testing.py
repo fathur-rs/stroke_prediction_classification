@@ -4,7 +4,7 @@ import training
 import time
 
 def data():
-    url = 'https://raw.githubusercontent.com/fathur-rs/Stroke-Dataset/main/healthcare-dataset-stroke-data.csv'
+    url = 'https://raw.githubusercontent.com/fathur-rs/uas/master/healthcare-dataset-stroke-data%20(2).csv'
     data = pd.read_csv(url)
     print('Reading Dataset...'), time.sleep(1)
     return data_clean(data)
