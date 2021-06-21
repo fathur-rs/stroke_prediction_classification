@@ -5,9 +5,6 @@ import os
 from terminaltables import SingleTable
 
 """Jalankan module testing.py terlebih dahulu"""
-"""Git Push"""
-"""Tes Sekali lagi"""
-"""Lesgoo cmonn"""
 
 path = os.path.abspath('module_decision')
 database = []
