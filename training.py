@@ -3,7 +3,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from imblearn.over_sampling import SMOTE
 import time
-import numpy as np
 from sklearn.metrics import classification_report
 from terminaltables import SingleTable
 import os
