@@ -5,7 +5,7 @@ import time
 from sklearn import preprocessing
 
 def data():
-    url = 'https://raw.githubusercontent.com/fathur-rs/uas/master/healthcare-dataset-stroke-data%20(2).csv'
+    url = 'https://raw.githubusercontent.com/fathur-rs/uas/master/healthcare-dataset-stroke-data.csv'
     data = pd.read_csv(url)
     print('Reading Dataset...'), time.sleep(1)
     return data_clean(data)
