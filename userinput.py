@@ -4,7 +4,7 @@ import pickle
 import os
 from terminaltables import SingleTable
 
-print("""Jalankan module testing.py terlebih dahulu""")
+print("""Jalankan module testing.py terlebih dahulu.""")
 
 path = os.path.abspath('module_decision')
 database = []
