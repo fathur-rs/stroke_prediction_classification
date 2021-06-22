@@ -1,4 +1,1 @@
-## About The Project
-
-Memprediksi 
 
