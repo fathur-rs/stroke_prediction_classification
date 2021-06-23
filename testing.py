@@ -6,10 +6,13 @@ from terminaltables import SingleTable
 
 """Jalankan module training.py terlebih dahulu"""
 
+# lokasi file pickle yang sebelumnya sudah kita buat
 path = os.path.abspath('module_decision')
+# empty list untuk menyimpan data user input
 database = []
 
 def user_input():
+    # user input
     try:
         input_name = input('Nama: ').title()
         input_age = int(input('Umur: '))
@@ -31,20 +34,29 @@ def user_input():
         return user_input()
 
 def dataframe_maker(*user_input):
+    # inisiasi nama column
     columns = ['Name', 'Gender', 'Age','Hypertension', 'Heart Disease', 'Married Status', 'Work Type', 'Residence Type', 'Glucose Level', 'Body Mass Index', 'Smoking Status']
+
+    # membuat dictionary
     data_user = {col:[val] for col, val in zip(columns, user_input)}
+
+    # dictionary to dataframe
     df = pd.DataFrame(data_user)
     return predict(df, data_user)
 
 def predict(df, data_user):
+    # kita import file pickle nya
     with open(path,'rb') as f:
         mp = pickle.load(f)
+        # langsung kita prediksi output dari user input
         Y_pred2 = ''.join(np.where(mp.predict(df.iloc[:, 1:]) == 0, 'Kemungkinan Besar Tidak Stroke', 'Kemungkinan Besar Stroke'))
-        return userdata_binary_to_kategorik(df, data_user, Y_pred2)
+        return binary_to_string(df, data_user, Y_pred2)
 
-def userdata_binary_to_kategorik(df, data_user, Y_pred2):
-    print('')
+def binary_to_string(df, data_user, Y_pred2):
+    # mengubah value dictionary yang berupa list menjadi str
     data_user_interface = {k: str(v[0]) for k, v in data_user.items()}
+
+    # mengubah kembali tipe data binary/integer menjadi string/category dalam dictionary yang sudah di ubah
     data_user_interface['Result'] = Y_pred2
     data_user_interface['Hypertension'] = ''.join(np.where(df.Hypertension.values == 0, 'Negative', 'Positive'))
     data_user_interface['Gender'] = ''.join(np.where(df.Gender == 0, 'Female', 'Male'))
@@ -56,6 +68,7 @@ def userdata_binary_to_kategorik(df, data_user, Y_pred2):
     return database.append(data_user_interface), user_interface()
 
 def user_interface():
+    # unpacking dictionary untuk membuat tabel
     cols, rows = [], []
     for data in database:
         col, row = [], []
@@ -64,14 +77,15 @@ def user_interface():
             row.append(n)
         cols.append(col)
         rows.append(row)
+    # membuat tabel
     data_tabel = [cols[0], *rows]
     title = 'Stroke Prediction'
     table = SingleTable(data_tabel, title)
-    print(table.table)
-    print('')
-    return prompt_option()
+    print(f'\n{table.table}\n')
+    return option()
 
-def prompt_option():
+def option():
+    # input more data?
     prompt = input('Input More Data? (Yes or No): ').title()
     if prompt == 'Yes':
         user_input()
@@ -79,7 +93,8 @@ def prompt_option():
         print('Terimakasih Telah Menggunakan Program ^_^')
     else:
         print('Invalid Input!')
-        return prompt_option()
+        return option()
+
 if __name__ == '__main__':
+    # jalankan function user_input()
     user_input()
-    pass
