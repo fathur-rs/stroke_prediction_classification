@@ -17,7 +17,7 @@ def data():
     return data_clean(data)
 
 def data_clean(data):
-    # excluded gender 'Other' dan drop NaN Values
+    # exclude gender 'Other' dan drop NaN Values
     df = data.loc[data["gender"] != 'Other']
     df.dropna(axis=0, inplace=True)
     return data_prep(df)
@@ -25,7 +25,8 @@ def data_clean(data):
 def data_prep(df):
     # mengubah data object/category menjadi integer
     label_encoder = preprocessing.LabelEncoder()
-    for i in ['gender', 'ever_married', 'work_type', 'Residence_type', 'smoking_status']:
+    obj_df = ['gender', 'ever_married', 'work_type', 'Residence_type', 'smoking_status']
+    for i in obj_df:
         df[i] = label_encoder.fit_transform(df[i])
     print('Data Preprocessing...'), time.sleep(1)
     return splitting_data(df)
