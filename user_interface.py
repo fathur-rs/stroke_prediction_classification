@@ -6,6 +6,7 @@ from terminaltables import SingleTable
 
 print("=== STROKE PREDICTION ===")
 
+#ergid
 path = os.path.abspath('saved_model')
 database = []
 
@@ -24,24 +25,28 @@ def user_input():
         input_hypertension = int(input('Apakah Pasien Memiliki Penyakit Hipertensi? [NO (0) / YES (1)]: '))
         input_heart_disease = int(input('Apakah Pasien Memiliki Penyakit Jantung? [NO (0) / YES (1)]: '))
         bmi = round(input_weight/pow((input_height/100), 2),3)
-        return dataframe_maker(input_name, input_gender,input_age, input_hypertension, input_heart_disease, input_ever_married, input_work_type,input_residence_type,input_glukosa, bmi,
-                               input_smoking)
+        return dataframe_maker(input_name, input_gender,input_age, input_hypertension, input_heart_disease, input_ever_married,
+                               input_work_type,input_residence_type,input_glukosa, bmi,input_smoking)
+
     except Exception as error:
         print(error)
         return user_input()
 
+#melodi
 def dataframe_maker(*user_input):
     columns = ['Name', 'Gender', 'Age','Hypertension', 'Heart Disease', 'Married Status', 'Work Type', 'Residence Type', 'Glucose Level', 'Body Mass Index', 'Smoking Status']
     data_user = {col:[val] for col, val in zip(columns, user_input)}
     df = pd.DataFrame(data_user)
     return predict(df, data_user)
 
+#razan
 def predict(df, data_user):
     with open(path,'rb') as f:
         mp = pickle.load(f)
         Y_pred2 = ''.join(np.where(mp.predict(df.iloc[:, 1:]) == 0, 'Kemungkinan Besar Tidak Stroke', 'Kemungkinan Besar Stroke'))
         return binary_to_string(df, data_user, Y_pred2)
 
+#fathur
 def binary_to_string(df, data_user, Y_pred2):
     data_user_interface = {k: str(v[0]) for k, v in data_user.items()}
     data_user_interface['Result'] = Y_pred2
@@ -54,6 +59,7 @@ def binary_to_string(df, data_user, Y_pred2):
     data_user_interface['Smoking Status'] = ''.join(df['Smoking Status'].map({0: 'Unknown', 1: 'Formerly', 2: 'Negative', 3: 'Positive'}))
     return database.append(data_user_interface), user_interface()
 
+#sinta
 def user_interface():
     cols, rows = [], []
     for data in database:
@@ -69,6 +75,7 @@ def user_interface():
     print(f'\n{table.table}\n')
     return option()
 
+#anisyaul
 def option():
     prompt = input('Input More Data? (Yes or No): ').title()
     if prompt == 'Yes':
