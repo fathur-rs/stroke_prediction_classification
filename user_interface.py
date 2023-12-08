@@ -30,7 +30,7 @@ def user_input():
         return user_input()
 
 def dataframe_maker(*user_input):
-    columns = ['Name', 'Gender', 'Age','Hypertension', 'Heart Disease', 'Married Status', 'Work Type', 'Residence Type', 'Glucose Level', 'Body Mass Index', 'Smoking Status']
+    columns = ['Name', 'gender', 'age','hypertension', 'heart_disease', 'ever_married', 'work_type', 'Residence_type', 'avg_glucose_level', 'bmi', 'smoking_status']
     data_user = {col:[val] for col, val in zip(columns, user_input)}
     df = pd.DataFrame(data_user)
     return predict(df, data_user)
@@ -44,13 +44,13 @@ def predict(df, data_user):
 def binary_to_string(df, data_user, Y_pred2):
     data_user_interface = {k: str(v[0]) for k, v in data_user.items()}
     data_user_interface['Result'] = Y_pred2
-    data_user_interface['Hypertension'] = ''.join(np.where(df.Hypertension.values == 0, 'Negative', 'Positive'))
-    data_user_interface['Gender'] = ''.join(np.where(df.Gender == 0, 'Female', 'Male'))
-    data_user_interface['Married Status'] = ''.join(np.where(df['Married Status'] == 0, 'Unmarried', 'Married'))
-    data_user_interface['Residence Type'] = ''.join(np.where(df['Residence Type'] == 0, 'Rural', 'Urban'))
-    data_user_interface['Heart Disease'] = ''.join(np.where(df['Heart Disease'] == 0, 'Negative', 'Positive'))
-    data_user_interface['Work Type'] = ''.join(df['Work Type'].map({0: 'Govt. Job', 1: 'Never Worked', 2: 'Private', 3: 'Self Employed', 4: 'Children'}))
-    data_user_interface['Smoking Status'] = ''.join(df['Smoking Status'].map({0: 'Unknown', 1: 'Formerly', 2: 'Negative', 3: 'Positive'}))
+    data_user_interface['hypertension'] = ''.join(np.where(df['hypertension'].values == 0, 'Negative', 'Positive'))
+    data_user_interface['gender'] = ''.join(np.where(df['gender'] == 0, 'Female', 'Male'))
+    data_user_interface['ever_married'] = ''.join(np.where(df['ever_married'] == 0, 'Unmarried', 'Married'))
+    data_user_interface['Residence_type'] = ''.join(np.where(df['Residence_type'] == 0, 'Rural', 'Urban'))
+    data_user_interface['heart_disease'] = ''.join(np.where(df['heart_disease'] == 0, 'Negative', 'Positive'))
+    data_user_interface['work_type'] = ''.join(df['work_type'].map({0: 'Govt. Job', 1: 'Never Worked', 2: 'Private', 3: 'Self Employed', 4: 'Children'}))
+    data_user_interface['smoking_status'] = ''.join(df['smoking_status'].map({0: 'Unknown', 1: 'Formerly', 2: 'Negative', 3: 'Positive'}))
     return database.append(data_user_interface), user_interface()
 
 def user_interface():
