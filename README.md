@@ -18,7 +18,9 @@ This Stroke Prediction CLI Program is a Python-based tool designed to predict th
 - Patient has heart disease?
 
 ## Requirements
-- !pip install -r requirements_package.txt
+   ```bash
+   !pip install -r requirements_package.txt
+   ```
 
 ## Installation
 To set up the Stroke Prediction CLI Program, follow these steps:
