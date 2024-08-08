@@ -37,7 +37,7 @@ To set up the Stroke Prediction CLI Program, follow these steps:
 Run the program with Python from the command line:
 
 ```bash
-python user_interface.py
+python src/user_interface.py
 ```
 
 Follow the on-screen prompts to enter the required health parameters. After all inputs are provided, the program will display the stroke risk assessment.
