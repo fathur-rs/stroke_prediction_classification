@@ -65,14 +65,14 @@ def train_model(X_train, y_train, X_test, y_test):
     logging.info(f'📊 Metrics:\n{classification_report(y_test, y_pred)}')
     return clf
 
-def save_model(clf, filename='saved_model.pkl'):
+def save_model(clf, filename='../model/saved_model.pkl'):
     """ Save the trained model as a pickle file """
     with open(filename, 'wb') as f:
         pickle.dump(clf, f)
     logging.info(f'💾 Model saved at: {os.path.abspath(filename)}')
 
 def main():
-    url = 'https://raw.githubusercontent.com/fathur-rs/uas/master/healthcare-dataset-stroke-data.csv'
+    url = 'https://raw.githubusercontent.com/fathur-rs/uas/master/dataset/healthcare-dataset-stroke-data.csv'
     df = load_data(url)
     X_train, X_test, y_train, y_test = preprocess_data(df)
     X_train_resampled, y_train_resampled = resample_data(X_train, y_train)

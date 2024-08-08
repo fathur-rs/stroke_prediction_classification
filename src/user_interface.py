@@ -4,7 +4,7 @@ import pickle
 import os
 from terminaltables import SingleTable
 
-path = os.path.abspath('saved_model.pkl')  # Ensure this path correctly points to your pickle file
+path = os.path.abspath('../model/saved_model.pkl')  # Ensure this path correctly points to your pickle file
 database = []
 
 def user_input():
