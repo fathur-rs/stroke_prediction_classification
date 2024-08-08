@@ -72,7 +72,7 @@ def save_model(clf, filename='../model/saved_model.pkl'):
     logging.info(f'💾 Model saved at: {os.path.abspath(filename)}')
 
 def main():
-    url = 'https://raw.githubusercontent.com/fathur-rs/uas/master/dataset/healthcare-dataset-stroke-data.csv'
+    url = 'https://raw.githubusercontent.com/fathur-rs/stroke_prediction_classification/master/dataset/healthcare-dataset-stroke-data.csv'
     df = load_data(url)
     X_train, X_test, y_train, y_test = preprocess_data(df)
     X_train_resampled, y_train_resampled = resample_data(X_train, y_train)
