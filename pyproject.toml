@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "stroke-prediction-classification"
+version = "0.1.0"
+description = ""
+authors = ["fathur <fathurrahmansyarief@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+imbalanced-learn = "^0.12.3"
+terminaltables = "^3.1.10"
+pandas = "^2.2.2"
+imblearn = "^0.0"
+scikit-learn = "1.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
